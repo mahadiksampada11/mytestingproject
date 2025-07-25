@@ -4,9 +4,7 @@ phases:
   build:
     commands:
       - echo "Starting CloudFront cache invalidation"
-      - aws cloudfront create-invalidation \
-          --distribution-id E2QK2HNW02TTR8 \
-          --paths "/*"
+      - aws cloudfront create-invalidation --distribution-id E2QK2HNW02TTR8 --paths "/*"
       - echo "Verifying CloudFront URL"
       - curl -I https://d1cfnpuhm3esw5.cloudfront.net/index.html || exit 1
 
