@@ -5,7 +5,7 @@ phases:
   build:
     commands:
       - echo "Uploading index.html to S3"
-      - aws s3 cp index.html s3://tmf-static-site/index.html
+      - aws s3 cp index.html s3://my-testing-buckettttt/index.html
 
       - echo "Invalidating CloudFront cache"
       - aws cloudfront create-invalidation --distribution-id E2QK2HNW02TTR8 --paths "/*"
