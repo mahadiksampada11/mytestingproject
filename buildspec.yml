@@ -1,14 +1,12 @@
-# buildspec.yml
 version: 0.2
 
 phases:
   build:
     commands:
-      - echo "Uploading index.html to S3"
-      - aws s3 cp index.html s3://my-testing-buckettttt/index.html
-
       - echo "Invalidating CloudFront cache"
-      - aws cloudfront create-invalidation --distribution-id E2QK2HNW02TTR8 --paths "/*"
+      - aws cloudfront create-invalidation \
+          --distribution-id E2QK2HNW02TTR8 \
+          --paths "/*"
 
       - echo "Validating CloudFront response"
       - curl -I https://d1cfnpuhm3esw5.cloudfront.net/index.html || exit 1
