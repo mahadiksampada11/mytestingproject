@@ -1,19 +1,18 @@
-echo "version: 0.2
+# buildspec.yml
+version: 0.2
 
 phases:
   build:
     commands:
-      - echo \"Uploading index.html to S3\"
+      - echo "Uploading index.html to S3"
       - aws s3 cp index.html s3://tmf-static-site/index.html
 
-      - echo \"Invalidating CloudFront cache\"
-      - aws cloudfront create-invalidation \\
-          --distribution-id E2QK2HNW02TTR8 \\
-          --paths \"/*\"
+      - echo "Invalidating CloudFront cache"
+      - aws cloudfront create-invalidation --distribution-id E2QK2HNW02TTR8 --paths "/*"
 
-      - echo \"Validating CloudFront response\"
+      - echo "Validating CloudFront response"
       - curl -I https://d1cfnpuhm3esw5.cloudfront.net/index.html || exit 1
 
 artifacts:
   files:
-    - index.html" > buildspec.yml
+    - index.html
